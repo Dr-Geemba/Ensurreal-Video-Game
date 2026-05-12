@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - PhaseObject
+  - canvas
   layers:
   - Default
   - TransparentFX

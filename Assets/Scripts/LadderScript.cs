@@ -11,7 +11,7 @@ public class LadderScript : MonoBehaviour
             Rigidbody2D playerRigidbody = other.gameObject.GetComponent<Rigidbody2D>();
             playerRigidbody.gravityScale = 0f;
             float verticalInput = Input.GetAxisRaw("Vertical");
-
+            
             // Set the velocity directly for smooth movement
             playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, verticalInput * climbSpeed);
         }

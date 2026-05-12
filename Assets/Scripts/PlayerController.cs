@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     private float timeTillNextAttack = 0f;
     private bool isFacingUp;
     private const int playerDamage = 10;
+    [SerializeField] private GameObject canvas;
+    private const float canvasCooldown = 3.5f;
+    private float timeTillNextCanvas = 0;
+    private Vector3 canvasOffset = Vector3.right;
     void Start()
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour
         }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && playerRigidbody.gravityScale == 1)
         {
             hasJumped = true;
         }
@@ -60,6 +64,11 @@ public class PlayerController : MonoBehaviour
         {
             Attack();
             timeTillNextAttack = Time.time + attackCooldown;
+        }
+        if (Input.GetKey(KeyCode.E) && timeTillNextCanvas < Time.time && CurrentData.Instance.playerMana >= 33)
+        {
+            timeTillNextCanvas = Time.time + canvasCooldown;
+            SpawnCanvas();
         }
         if(CurrentData.Instance.playerHealth == 0)
         {
@@ -99,6 +108,7 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D enemy in hitEnemys) 
         {
             Debug.Log(enemy.name);
+            CurrentData.Instance.playerMana += 11;
             IDamageable damageable = enemy.GetComponent<IDamageable>();
             if(damageable != null)
             {
@@ -106,6 +116,23 @@ public class PlayerController : MonoBehaviour
             }
         }
         StartCoroutine(FlashHitbox());
+    }
+
+    private void SpawnCanvas()
+    {
+        CurrentData.Instance.playerMana -= 33;
+        if (GameObject.FindWithTag("canvas") != null)
+        {
+            Destroy(GameObject.FindWithTag("canvas"));
+        }
+        if (isFacingRight)
+        {
+            Instantiate(canvas, transform.position + canvasOffset, canvas.transform.rotation);
+        }
+        else
+        {
+            Instantiate(canvas, transform.position - canvasOffset, canvas.transform.rotation);
+        }    
     }
     IEnumerator FlashHitbox()
     {
