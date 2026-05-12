@@ -6,26 +6,24 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRigidbody;
     private const float speed = 5f;
+    private const float speedClimb = 4f;
     private const float force = 7f;
     private bool hasJumped = false;
     public Transform groundCheck;
-    private float groundCheckRadius = 1.5f;
+    private float groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
+    public bool isClimbing;
     private bool isFacingRight;
     private const float attackRadius = 1.5f;
     [SerializeField] private LayerMask enemyLayer;
     private Vector3 horizontalAttackOffset = new Vector2(1,0);
     private Vector3 verticalAttackOffset = new Vector2(0, 1.25f);
     [SerializeField] private GameObject hitBox;
-    private const float attackCooldown = 1f;
+    private const float attackCooldown = 0.3f;
     private float timeTillNextAttack = 0f;
     private bool isFacingUp;
-    private const int playerDamage = 10;
-    [SerializeField] private GameObject canvas;
-    private const float canvasCooldown = 3.5f;
-    private float timeTillNextCanvas = 0;
-    private Vector3 canvasOffset = Vector3.right;
+    private const int playerDamage = 8;
     void Start()
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -33,16 +31,27 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (isClimbing)
         {
-            gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
-            isFacingRight = true;
-        }
+            playerRigidbody.gravityScale = 0f;
+            float verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.A))
+            // Set the velocity directly for smooth movement
+            playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, verticalInput * speedClimb);
+        }
+        else
         {
-            gameObject.transform.position += -Vector3.right * speed * Time.deltaTime;
-            isFacingRight = false;
+            if (Input.GetKey(KeyCode.D))
+            {
+                gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
+                isFacingRight = true;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                gameObject.transform.position += -Vector3.right * speed * Time.deltaTime;
+                isFacingRight = false;
+            }
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -53,9 +62,8 @@ public class PlayerController : MonoBehaviour
         {
             isFacingUp = false;
         }
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && playerRigidbody.gravityScale == 1)
+        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || isClimbing))
         {
             hasJumped = true;
         }
@@ -65,11 +73,6 @@ public class PlayerController : MonoBehaviour
             Attack();
             timeTillNextAttack = Time.time + attackCooldown;
         }
-        if (Input.GetKey(KeyCode.E) && timeTillNextCanvas < Time.time && CurrentData.Instance.playerMana >= 33)
-        {
-            timeTillNextCanvas = Time.time + canvasCooldown;
-            SpawnCanvas();
-        }
         if(CurrentData.Instance.playerHealth == 0)
         {
             Debug.Log("player died");
@@ -78,8 +81,10 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (hasJumped)
         {
+            playerRigidbody.linearVelocity = Vector3.zero;
             playerRigidbody.AddForce(Vector3.up * force, ForceMode2D.Impulse);
             hasJumped= false;
         }
@@ -108,7 +113,6 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D enemy in hitEnemys) 
         {
             Debug.Log(enemy.name);
-            CurrentData.Instance.playerMana += 11;
             IDamageable damageable = enemy.GetComponent<IDamageable>();
             if(damageable != null)
             {
@@ -116,23 +120,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         StartCoroutine(FlashHitbox());
-    }
-
-    private void SpawnCanvas()
-    {
-        CurrentData.Instance.playerMana -= 33;
-        if (GameObject.FindWithTag("canvas") != null)
-        {
-            Destroy(GameObject.FindWithTag("canvas"));
-        }
-        if (isFacingRight)
-        {
-            Instantiate(canvas, transform.position + canvasOffset, canvas.transform.rotation);
-        }
-        else
-        {
-            Instantiate(canvas, transform.position - canvasOffset, canvas.transform.rotation);
-        }    
     }
     IEnumerator FlashHitbox()
     {
