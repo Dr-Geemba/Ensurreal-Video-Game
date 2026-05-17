@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRigidbody;
+    private SpriteRenderer sprite;
     private const float speed = 5f;
     private const float speedClimb = 4f;
     private const float force = 7f;
     private bool hasJumped = false;
+    //Mark mode makes you able to go sideways on ladders 
+    public bool markMode = false;
     public Transform groundCheck;
     private float groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask groundLayer;
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody2D>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -39,8 +43,9 @@ public class PlayerController : MonoBehaviour
             // Set the velocity directly for smooth movement
             playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, verticalInput * speedClimb);
         }
-        else
+        if(markMode || !isClimbing)
         {
+            //Change keyboard inputs
             if (Input.GetKey(KeyCode.D))
             {
                 gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
@@ -53,7 +58,19 @@ public class PlayerController : MonoBehaviour
                 isFacingRight = false;
             }
         }
-
+        //Mark Mode
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (!markMode)
+            {
+                sprite.color = new Color(1f, 1f, 0f);
+            }
+            else
+            {
+                sprite.color = new Color(1f, 0f, 0f);
+            }
+            markMode = !markMode;
+        }
         if (Input.GetKey(KeyCode.W))
         {
             isFacingUp = true;
@@ -65,7 +82,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || isClimbing))
         {
-            hasJumped = true;
+            if (Input.GetKey(KeyCode.S))
+            {
+
+            }
+            else
+            {
+                hasJumped = true;
+            }
         }
 
         if (Input.GetButtonDown("Fire1") && Time.time > timeTillNextAttack)
