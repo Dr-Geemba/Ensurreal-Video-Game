@@ -1,44 +1,28 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PhaseObject : MonoBehaviour
 {
     private PlatformEffector2D effector;
-    private Collider2D platformcollider;
+    private LayerMask ogMask;
     void Start()
     {
         effector = GetComponent<PlatformEffector2D>();
-        platformcollider = GetComponent<Collider2D>();
+        ogMask = effector.colliderMask;
     }
     void Update()
     {
         if (Input.GetKey(KeyCode.S))
         {
-            effector.rotationalOffset = 180;
-        }
-        else
-        {
-            effector.rotationalOffset = 0;
+            StartCoroutine(Drop());
         }
     }
-    void OnCollisionStay2D(Collision2D other)
+    private IEnumerator Drop()
     {
-        if (other.gameObject.CompareTag("Player") && Input.GetKey(KeyCode.S))
-        {
-            Collider2D playerCollider = other.gameObject.GetComponent<Collider2D>();
-            StartCoroutine(NoTeleport(playerCollider));
-        }
+        int playerLayer = LayerMask.NameToLayer("Player");
+        effector.colliderMask &= ~(1 << playerLayer);
+        yield return new WaitForSeconds(0.7f);
+        effector.colliderMask = ogMask;
     }
-    private IEnumerator NoTeleport(Collider2D playerCollider)
-    {
-        Physics2D.IgnoreCollision(playerCollider, platformcollider,true);
-        while(playerCollider.bounds.min.y > platformcollider.bounds.max.y - 0.1f)
-        {
-            yield return null;
-        }
-        yield return new WaitForSeconds(0.1f);
-        Physics2D.IgnoreCollision(playerCollider, platformcollider, false);
-
-    }
-
 }

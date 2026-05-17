@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRigidbody;
     private SpriteRenderer sprite;
-    private const float speed = 5f;
+    private const float speed = 1f;
     private const float speedClimb = 4f;
     private const float force = 7f;
     private bool hasJumped = false;
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     private float groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask platformLayer;
     private bool isGrounded;
     public bool isClimbing;
     private bool isFacingRight;
@@ -31,6 +32,9 @@ public class PlayerController : MonoBehaviour
     private float timeTillNextCanvas = 0;
     private Vector3 canvasOffset = Vector3.right;
     private const int playerDamage = 8;
+    private const float maxSpeed = 5f;
+    private float moveX;
+    private float moveZ;
     void Start()
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -39,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveZ = Input.GetAxisRaw("Vertical");
         if (isClimbing)
         {
             playerRigidbody.gravityScale = 0f;
@@ -47,20 +53,13 @@ public class PlayerController : MonoBehaviour
             // Set the velocity directly for smooth movement
             playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, verticalInput * speedClimb);
         }
-        if(markMode || !isClimbing)
+        if (Input.GetKey(KeyCode.A))
         {
-            //Change keyboard inputs
-            if (Input.GetKey(KeyCode.D))
-            {
-                gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
-                isFacingRight = true;
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                gameObject.transform.position += -Vector3.right * speed * Time.deltaTime;
-                isFacingRight = false;
-            }
+            isFacingRight = false;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            isFacingRight = true;
         }
         //Mark Mode
         if (Input.GetKeyDown(KeyCode.R))
@@ -115,12 +114,28 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer | platformLayer);
         if (hasJumped)
         {
             playerRigidbody.linearVelocity = Vector3.zero;
             playerRigidbody.AddForce(Vector3.up * force, ForceMode2D.Impulse);
             hasJumped= false;
+        }
+        Vector3 movementDirection = new Vector3(moveX, 0f, moveZ).normalized;
+        if (markMode || !isClimbing)
+        {
+            if (movementDirection != Vector3.zero)
+            {
+                Vector3 horizontalVelocity = new Vector3(playerRigidbody.linearVelocity.x, 0f, 0f);
+                if (horizontalVelocity.magnitude < maxSpeed)
+                {
+                    playerRigidbody.AddForce(movementDirection * speed, ForceMode2D.Impulse);
+                }
+            }
+            else
+            {
+                playerRigidbody.linearVelocity = new Vector3(0f, playerRigidbody.linearVelocity.y, 0f);
+            }
         }
     }
     private void Attack()

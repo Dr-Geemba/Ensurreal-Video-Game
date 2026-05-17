@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1829756865301472135}
   - component: {fileID: 6868844171683965351}
   - component: {fileID: 1960317795994863132}
-  - component: {fileID: -4958462646936647233}
-  m_Layer: 0
+  - component: {fileID: 6504892490225420802}
+  m_Layer: 7
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
---- !u!114 &-4958462646936647233
+--- !u!114 &6504892490225420802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4036836375790674445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f4bc9e15d76ac4a84e40d266dda875, type: 3}
+  m_Script: {fileID: 11500000, guid: 33fab21f989e1844caa5b4f2cc939c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   markMode: 0
@@ -186,11 +186,15 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 256
   isClimbing: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   hitBox: {fileID: 6353485592472982443}
+  canvas: {fileID: 0}
 --- !u!1 &5716488141996251554
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7569332392688901631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1952647880871025306}
   - component: {fileID: 6215959191414416347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
