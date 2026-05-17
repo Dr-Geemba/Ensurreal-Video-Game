@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
     private const float attackCooldown = 0.3f;
     private float timeTillNextAttack = 0f;
     private bool isFacingUp;
+    [SerializeField] private GameObject canvas;
+    private const float canvasCooldown = 3.5f;
+    private float timeTillNextCanvas = 0;
+    private Vector3 canvasOffset = Vector3.right;
     private const int playerDamage = 8;
     void Start()
     {
@@ -79,6 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             isFacingUp = false;
         }
+        //I forget why but I moved isGrounded to line 108
 
         if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || isClimbing))
         {
@@ -101,6 +106,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("player died");
             Destroy(gameObject);
+        }
+        if (Input.GetKey(KeyCode.E) && timeTillNextCanvas < Time.time)
+        {
+            timeTillNextCanvas = Time.time + canvasCooldown;
+            SpawnCanvas();
         }
     }
     void FixedUpdate()
@@ -144,6 +154,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         StartCoroutine(FlashHitbox());
+    }
+    private void SpawnCanvas()
+    {
+        if (GameObject.FindWithTag("canvas") != null)
+        {
+            Destroy(GameObject.FindWithTag("canvas"));
+        }
+        if (isFacingRight)
+        {
+            Instantiate(canvas, transform.position + canvasOffset, canvas.transform.rotation);
+        }
+        else
+        {
+            Instantiate(canvas, transform.position - canvasOffset, canvas.transform.rotation);
+        }    
     }
     IEnumerator FlashHitbox()
     {
