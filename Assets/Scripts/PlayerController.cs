@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     private float groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask platformLayer;
     private bool isGrounded;
     public bool isClimbing;
     private bool isFacingRight;
@@ -34,7 +33,6 @@ public class PlayerController : MonoBehaviour
     private const int playerDamage = 8;
     private const float maxSpeed = 5f;
     private float moveX;
-    private float moveZ;
     void Start()
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -44,7 +42,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         moveX = Input.GetAxisRaw("Horizontal");
-        moveZ = Input.GetAxisRaw("Vertical");
         if (isClimbing)
         {
             playerRigidbody.gravityScale = 0f;
@@ -114,14 +111,14 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer | platformLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (hasJumped)
         {
             playerRigidbody.linearVelocity = Vector3.zero;
             playerRigidbody.AddForce(Vector3.up * force, ForceMode2D.Impulse);
             hasJumped= false;
         }
-        Vector3 movementDirection = new Vector3(moveX, 0f, moveZ).normalized;
+        Vector3 movementDirection = new Vector3(moveX, 0f, 0f).normalized;
         if (markMode || !isClimbing)
         {
             if (movementDirection != Vector3.zero)
