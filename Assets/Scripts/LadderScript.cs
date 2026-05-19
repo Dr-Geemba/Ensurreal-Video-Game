@@ -23,7 +23,7 @@ public class LadderScript : MonoBehaviour
             }
             //space gets off the ladder and ends climbing state
             //You can do or I can: ADD STOPCLIMB IF HIT BY ENEMY
-            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.Space))
             {
                 stopClimb(other);
             }

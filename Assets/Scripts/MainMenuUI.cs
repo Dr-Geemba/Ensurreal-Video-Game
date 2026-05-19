@@ -6,12 +6,10 @@ using UnityEditor;
 public class MainMenuUI : MonoBehaviour
 {
     private const int tutorialLevelScene = 2;
-    private const int PlayerUIScene = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartGame()
     {
         SceneManager.LoadScene(tutorialLevelScene);
-        //SceneManager.LoadScene(PlayerUIScene, LoadSceneMode.Additive);
     }
 
     public void ExitGame()

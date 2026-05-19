@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     private float groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask platformLayer;
     private bool isGrounded;
     public bool isClimbing;
     private bool isFacingRight;
@@ -111,7 +112,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer | platformLayer);
         if (hasJumped)
         {
             playerRigidbody.linearVelocity = Vector3.zero;

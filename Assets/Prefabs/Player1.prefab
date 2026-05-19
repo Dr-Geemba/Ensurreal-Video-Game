@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8282152889275561233}
   - component: {fileID: 1829756865301472135}
   - component: {fileID: 6868844171683965351}
-  - component: {fileID: 1960317795994863132}
   - component: {fileID: 6504892490225420802}
+  - component: {fileID: 6120493205250152097}
   m_Layer: 7
   m_Name: Player1
   m_TagString: Player
@@ -123,8 +123,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &1960317795994863132
-BoxCollider2D:
+--- !u!114 &6504892490225420802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036836375790674445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33fab21f989e1844caa5b4f2cc939c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  markMode: 0
+  groundCheck: {fileID: 7569332392688901631}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  isClimbing: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  hitBox: {fileID: 6353485592472982443}
+  canvas: {fileID: 0}
+--- !u!70 &6120493205250152097
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -158,43 +181,8 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
-  m_EdgeRadius: 0
---- !u!114 &6504892490225420802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4036836375790674445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33fab21f989e1844caa5b4f2cc939c53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  markMode: 0
-  groundCheck: {fileID: 7569332392688901631}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  isClimbing: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  hitBox: {fileID: 6353485592472982443}
-  canvas: {fileID: 0}
+  m_Size: {x: 0.99999994, y: 2}
+  m_Direction: 0
 --- !u!1 &5716488141996251554
 GameObject:
   m_ObjectHideFlags: 0
