@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour
             hasJumped= false;
         }
         moveX = Input.GetAxisRaw("Horizontal");
-        Debug.Log(moveX);
         Vector3 movementDirection = new Vector3(moveX, 0f, 0f).normalized;
         if (markMode || !isClimbing)
         {
