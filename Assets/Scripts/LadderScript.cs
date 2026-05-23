@@ -11,10 +11,12 @@ public class LadderScript : MonoBehaviour
             //Snaps player to middle of ladder and puts the player in the climbing state if w clicked
             float ladderCenter = GetComponent<Collider2D>().bounds.center.x;
             PlayerController player = other.GetComponent<PlayerController>();
+            Rigidbody2D playerRigid = other.GetComponent<Rigidbody2D>();
             //ADD TIME AFTER W TO NOT SNAP BACK TO LADDER->SMALL COOLDOWN
-            if (Input.GetKey(KeyCode.W) && !player.isClimbing)
+            if (Input.GetKey(KeyCode.UpArrow) && !player.isClimbing)
             {
                 player.isClimbing = true;
+                playerRigid.linearVelocity = Vector3.zero;
                 if (!player.markMode)
                 {
                     Vector3 playerPos = other.transform.position;
@@ -23,19 +25,17 @@ public class LadderScript : MonoBehaviour
             }
             //space gets off the ladder and ends climbing state
             //You can do or I can: ADD STOPCLIMB IF HIT BY ENEMY
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Z))
             {
-                stopClimb(other);
+                stopClimb(playerRigid, player);
             }
         }
     }
 
-    void stopClimb(Collider2D other)
+    void stopClimb(Rigidbody2D playerRigid, PlayerController player)
     {
-        Rigidbody2D playerRigidbody = other.GetComponent<Rigidbody2D>();
-        PlayerController player = other.GetComponent<PlayerController>();
         player.isClimbing = false;
-        playerRigidbody.gravityScale = 1f;
+        playerRigid.gravityScale = 1f;
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -43,7 +43,9 @@ public class LadderScript : MonoBehaviour
         //Also exits if you're off the ladder
         if (other.gameObject.CompareTag("Player"))
         {
-            stopClimb(other);
+            PlayerController player = other.GetComponent<PlayerController>();
+            Rigidbody2D playerRigid = other.GetComponent<Rigidbody2D>();
+            stopClimb(playerRigid, player);
         }
     }
 }
