@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //THERE'S STILL A BUG WHERE WHEN YOU JUMP, YOU SOMETIMES MOVE LEFT OR RIGHT
     private Rigidbody2D playerRigidbody;
     private SpriteRenderer sprite;
     private const float speed = 1f;
@@ -42,20 +43,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        moveX = Input.GetAxisRaw("Horizontal");
-        if (isClimbing)
-        {
-            playerRigidbody.gravityScale = 0f;
-            float verticalInput = Input.GetAxisRaw("Vertical");
-
-            // Set the velocity directly for smooth movement
-            playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, verticalInput * speedClimb);
-        }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             isFacingRight = false;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             isFacingRight = true;
         }
@@ -72,7 +64,7 @@ public class PlayerController : MonoBehaviour
             }
             markMode = !markMode;
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             isFacingUp = true;
         }
@@ -82,9 +74,9 @@ public class PlayerController : MonoBehaviour
         }
         //I forget why but I moved isGrounded to line 108
 
-        if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || isClimbing))
+        if (Input.GetKeyDown(KeyCode.Z) && (isGrounded || isClimbing))
         {
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.DownArrow))
             {
 
             }
@@ -112,6 +104,14 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (isClimbing)
+        {
+            playerRigidbody.gravityScale = 0f;
+            float verticalInput = Input.GetAxisRaw("Vertical");
+
+            // Set the velocity directly for smooth movement
+            playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, verticalInput * speedClimb);
+        }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer | platformLayer);
         if (hasJumped)
         {
@@ -119,6 +119,8 @@ public class PlayerController : MonoBehaviour
             playerRigidbody.AddForce(Vector3.up * force, ForceMode2D.Impulse);
             hasJumped= false;
         }
+        moveX = Input.GetAxisRaw("Horizontal");
+        Debug.Log(moveX);
         Vector3 movementDirection = new Vector3(moveX, 0f, 0f).normalized;
         if (markMode || !isClimbing)
         {
