@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3618159642775300691, guid: 9fcd364fd10d34d48a5834802277ff7b, type: 3}
   m_Color: {r: 0.990566, g: 0.98589355, b: 0.98589355, a: 1}
@@ -184,7 +184,7 @@ MonoBehaviour:
   animation: {fileID: 9038434176477586612}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
