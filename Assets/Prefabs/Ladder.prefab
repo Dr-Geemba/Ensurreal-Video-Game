@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.9559748, g: 0.5501364, b: 0.5501364, a: 1}
@@ -148,6 +148,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1277419043207475045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6acc1522f86417e48a20e49f5cec0ee1, type: 3}
+  m_Script: {fileID: 11500000, guid: ca24b77e26bbde643ac9b244316f5e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LadderScript
