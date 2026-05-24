@@ -667,30 +667,33 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'A - Move left
+  m_text: 'Left Arrow - Move left
 
-    D - Move right
+    Right Arrow - Move right
 
-    Space - Jump (Unless holding S)
+    Up Arrow - Look
+    up
 
-    R
-    - Mark Mode
+    Z - Jump (Unless holding Down Arrow)
 
-    Left Click - Attack
+    X - Attack
 
-
-    W while touching a ladder - Enter
-    climbing state
-
-    While climbing, use W and S to move up and down and Space
-    to exit the state
+    R - Mark Mode
 
 
-    While climbing, you can''t move sideways unless Mark
-    Mode is on
+    Up
+    Arrow while touching a ladder - Enter climbing state
+
+    While climbing, use
+    Up Arrow and Down Arrow to move up and down and Z to exit the state
 
 
-    S while on fall-through platform - Fall through the platform'
+    While
+    climbing, you can''t move sideways unless Mark Mode is on
+
+
+    Down Arrow +
+    Z while on fall-through platform - Fall through the platform'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
