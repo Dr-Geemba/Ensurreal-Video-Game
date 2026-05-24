@@ -20,7 +20,6 @@ public class CrawlEnemy : BasicEnemy, IDamageable
         spriteDirection = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(enemyHp <= 0)
