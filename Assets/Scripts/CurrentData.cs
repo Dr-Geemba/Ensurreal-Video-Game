@@ -40,6 +40,19 @@ public class CurrentData : MonoBehaviour
             }
         }
     }
+    private int m_playerMana = 50;
+    public int playerMana
+    {
+        get { return m_playerMana; }
+        set
+        {
+            if (value >= 0 && value <= 50)
+            {
+                m_playerMana = value;
+                OnPlayerManaChange?.Invoke(m_playerMana);
+            }
+        }
+    }
     void Awake()
     {
         if(Instance != null)
