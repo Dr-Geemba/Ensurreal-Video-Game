@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Starting pos is (-70, 0.7, 0)
     //THERE'S STILL A BUG WHERE WHEN YOU JUMP, YOU SOMETIMES MOVE LEFT OR RIGHT
     private Rigidbody2D playerRigidbody;
     private SpriteRenderer sprite;
+    private AudioSource playerAudio;
+    public AudioClip swingSFX;
+    public AudioClip hurtSFX;
     private const float speed = 1f;
     private const float speedClimb = 4f;
-    private const float force = 7f;
+    private const float force = 7.5f;
     private bool hasJumped = false;
     //Mark mode makes you able to go sideways on ladders 
     public bool markMode = false;
@@ -39,15 +43,16 @@ public class PlayerController : MonoBehaviour
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
+        playerAudio = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             isFacingRight = false;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             isFacingRight = true;
         }
@@ -64,7 +69,7 @@ public class PlayerController : MonoBehaviour
             }
             markMode = !markMode;
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             isFacingUp = true;
         }
@@ -74,9 +79,9 @@ public class PlayerController : MonoBehaviour
         }
         //I forget why but I moved isGrounded to line 108
 
-        if (Input.GetKeyDown(KeyCode.Z) && (isGrounded || isClimbing))
+        if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space)) && (isGrounded || isClimbing))
         {
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
 
             }
@@ -89,6 +94,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Time.time > timeTillNextAttack)
         {
             Attack();
+            playerAudio.PlayOneShot(swingSFX, 1.0f);
             timeTillNextAttack = Time.time + attackCooldown;
         }
         if(CurrentData.Instance.playerHealth == 0)

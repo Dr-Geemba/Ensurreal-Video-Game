@@ -10,7 +10,7 @@ public class CrawlEnemy : BasicEnemy, IDamageable
     private const float rayDistanceHorizontal = .75f;
     private const float rayDistanceVertical = 1f;
     private const float enemySpeed = 1.3f;
-    private bool isFacingRight = false;
+    public bool isFacingRight = false;
     private bool isDead = false;
     private float timeTillHitAgain = 0f;
     public float enemyHp = 15f;
@@ -29,6 +29,10 @@ public class CrawlEnemy : BasicEnemy, IDamageable
                 gainMoney(5);
                 animation.SetBool("isDead", true);
                 isDead = true;
+            }
+            if (transform.position.y < -50.0f)
+            {
+                Destroy(gameObject);
             }
         }
         else

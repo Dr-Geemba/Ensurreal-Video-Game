@@ -13,7 +13,7 @@ public class PhaseObject : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.S))
+        if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space)))
         {
             StartCoroutine(Drop());
         }
@@ -22,7 +22,7 @@ public class PhaseObject : MonoBehaviour
     {
         int playerLayer = LayerMask.NameToLayer("Player");
         effector.colliderMask &= ~(1 << playerLayer);
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.4f);
         effector.colliderMask = ogMask;
     }
 }

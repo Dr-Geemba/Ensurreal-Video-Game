@@ -13,7 +13,7 @@ public class LadderScript : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
             Rigidbody2D playerRigid = other.GetComponent<Rigidbody2D>();
             //ADD TIME AFTER W TO NOT SNAP BACK TO LADDER->SMALL COOLDOWN
-            if (Input.GetKey(KeyCode.UpArrow) && !player.isClimbing)
+            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !player.isClimbing)
             {
                 player.isClimbing = true;
                 playerRigid.linearVelocity = Vector3.zero;
@@ -25,7 +25,7 @@ public class LadderScript : MonoBehaviour
             }
             //space gets off the ladder and ends climbing state
             //You can do or I can: ADD STOPCLIMB IF HIT BY ENEMY
-            if (Input.GetKey(KeyCode.Z))
+            if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space))
             {
                 stopClimb(playerRigid, player);
             }
