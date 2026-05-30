@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PhaseObject : MonoBehaviour
 {
+    //MAKE isGrounded true TO FALL, SO THAT YOU CAN'T PRESS IT EARLY TO FALL THROUGH
+    //ADD DOWNWARD FORCE SO WE CAN DECREASE WaitForSeconds AND OTHER GAMES DO IT
     private PlatformEffector2D effector;
     private LayerMask ogMask;
     void Start()

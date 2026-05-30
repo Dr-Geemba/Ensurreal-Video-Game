@@ -720,8 +720,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -834,12 +834,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1104,10 +1104,10 @@ RectTransform:
   - {fileID: 1313577583}
   m_Father: {fileID: 1068659123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.26473257, y: 0.20024326}
-  m_AnchorMax: {x: 0.7085349, y: 0.78174776}
-  m_AnchoredPosition: {x: 9.700012, y: -36.898117}
-  m_SizeDelta: {x: 70.5452, y: 73.7962}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -6.799988, y: -42.398117}
+  m_SizeDelta: {x: 619.54517, y: 422.7962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1140634672
 GameObject:
@@ -1734,21 +1734,31 @@ MonoBehaviour:
 
     Already known issues:
 
-    Fall through platform is wonky. Plans
-    for redesign are underway.
+    Ladders are a bit wonky, if you jump
+    on a platform and then hold up, you''ll climb off the ladder again. You also
+    can''t go off a ladder if you climb down and hit the ground.
 
-    Not leaving collision with an enemy allows you
-    to continuesly avoid damage.
+    Fall through
+    platforms are fixed for the most part besides the fact that you can press down
+    and jump before being on a platform to phase through.
 
-    Canvas mechanic is not showcased in this prototype.
+    Sometimes when you
+    jump, you keep your momentum despite trying to move in different directions.
+    :(
+
+    Enemies need a bit of work in terms of collision and damaging the player.
+
+    There
+    is a breakable wall halfway through but it isn''t scripted yet so you can''t
+    access it yet.
 
 
-    Big
-    thanks to Tommy for programming most of the project and making the project. Big
-    thanks to Jacob as well for the lovely Doan enemy animation.
+    Big thanks to Tommy for programming most of the project
+    and making the project. Big thanks to Jacob as well for the lovely Doan enemy
+    animation. Also big thanks to Marissa for the beautiful background scenery.
 
-    Shoutout to
-    Mark for moving sideways on ladder idea.'
+    Mark
+    mode still exists fyi and old wasd controls also exist.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1775,8 +1785,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

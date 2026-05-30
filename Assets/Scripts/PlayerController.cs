@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Starting pos is (-70, 0.7, 0)
+    //Starting pos is (-92, 0.7, 0)
     //THERE'S STILL A BUG WHERE WHEN YOU JUMP, YOU SOMETIMES MOVE LEFT OR RIGHT
+    //WE ALSO NEED TO REDO HOW PLAYER TAKES DAMAGE. I-FRAMES DON'T WORK AND SHOULD BE TIED TO THE PLAYER
     private Rigidbody2D playerRigidbody;
     private SpriteRenderer sprite;
+    private CapsuleCollider2D collider;
     private AudioSource playerAudio;
     public AudioClip swingSFX;
     public AudioClip hurtSFX;
@@ -23,9 +25,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask platformLayer;
     private bool isGrounded;
     public bool isClimbing;
+    private bool isDucking;
     private bool isFacingRight;
     private const float attackRadius = 1.5f;
-    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask attackLayer;
     private Vector3 horizontalAttackOffset = new Vector2(1,0);
     private Vector3 verticalAttackOffset = new Vector2(0, 1.25f);
     [SerializeField] private GameObject hitBox;
@@ -43,18 +46,38 @@ public class PlayerController : MonoBehaviour
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
+        collider = gameObject.GetComponent<CapsuleCollider2D>();
         playerAudio = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            {
+                isFacingRight = false;
+            }
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
+                isFacingRight = true;
+            }
+        if (!isDucking)
         {
-            isFacingRight = false;
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            {
+                isFacingUp = true;
+            }
+            else
+            {
+                isFacingUp = false;
+            }
         }
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && isGrounded && !isClimbing)
         {
-            isFacingRight = true;
+            isDucking = true;
+        }
+        else
+        {
+            isDucking = false;
         }
         //Mark Mode
         if (Input.GetKeyDown(KeyCode.R))
@@ -68,14 +91,6 @@ public class PlayerController : MonoBehaviour
                 sprite.color = new Color(1f, 0f, 0f);
             }
             markMode = !markMode;
-        }
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            isFacingUp = true;
-        }
-        else
-        {
-            isFacingUp = false;
         }
         //I forget why but I moved isGrounded to line 108
 
@@ -117,6 +132,11 @@ public class PlayerController : MonoBehaviour
 
             // Set the velocity directly for smooth movement
             playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, verticalInput * speedClimb);
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && isGrounded)
+            {
+                isClimbing = false;
+                playerRigidbody.gravityScale = 1f;
+            }
         }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer | platformLayer);
         if (hasJumped)
@@ -125,9 +145,19 @@ public class PlayerController : MonoBehaviour
             playerRigidbody.AddForce(Vector3.up * force, ForceMode2D.Impulse);
             hasJumped= false;
         }
+        if (isDucking)
+        {
+            collider.size = new Vector2(1, 1);
+            collider.offset = new Vector2(collider.offset.x, -0.5f);
+        }
+        else
+        {
+            collider.size = new Vector2(1, 2);
+            collider.offset = new Vector2(collider.offset.x, 0f);
+        }
         moveX = Input.GetAxisRaw("Horizontal");
         Vector3 movementDirection = new Vector3(moveX, 0f, 0f).normalized;
-        if (markMode || !isClimbing)
+        if ((markMode || !isClimbing) && !isDucking)
         {
             if (movementDirection != Vector3.zero)
             {
@@ -145,29 +175,29 @@ public class PlayerController : MonoBehaviour
     }
     private void Attack()
     {
-        Collider2D[] hitEnemys;
+        Collider2D[] hitTargets;
         if(isFacingUp == true)
         {
-            hitEnemys = Physics2D.OverlapBoxAll(gameObject.transform.position + verticalAttackOffset, new Vector2(1, 1) * attackRadius, 0, enemyLayer);
+            hitTargets = Physics2D.OverlapBoxAll(gameObject.transform.position + verticalAttackOffset, new Vector2(1, 1) * attackRadius, 0, attackLayer);
             hitBox.transform.position = gameObject.transform.position + verticalAttackOffset;
         }
 
         else if(isFacingRight == true)
         {
-            hitEnemys = Physics2D.OverlapBoxAll(gameObject.transform.position + horizontalAttackOffset, new Vector2(1,1) * attackRadius, 0, enemyLayer);
+            hitTargets = Physics2D.OverlapBoxAll(gameObject.transform.position + horizontalAttackOffset, new Vector2(1,1) * attackRadius, 0, attackLayer);
             hitBox.transform.position = gameObject.transform.position + horizontalAttackOffset;
         }
         else
         {
-            hitEnemys = Physics2D.OverlapBoxAll(gameObject.transform.position - horizontalAttackOffset, new Vector2(1, 1) * attackRadius, 0, enemyLayer);
+            hitTargets = Physics2D.OverlapBoxAll(gameObject.transform.position - horizontalAttackOffset, new Vector2(1, 1) * attackRadius, 0, attackLayer);
             hitBox.transform.position = gameObject.transform.position - horizontalAttackOffset;
 
         }
 
-        foreach (Collider2D enemy in hitEnemys) 
+        foreach (Collider2D target in hitTargets) 
         {
-            Debug.Log(enemy.name);
-            IDamageable damageable = enemy.GetComponent<IDamageable>();
+            Debug.Log(target.name);
+            IDamageable damageable = target.GetComponent<IDamageable>();
             if(damageable != null)
             {
                 damageable.TakeDamage(playerDamage);

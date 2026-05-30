@@ -9,11 +9,12 @@ public class CrawlEnemy : BasicEnemy, IDamageable
     [SerializeField] private LayerMask enemyLayer;
     private const float rayDistanceHorizontal = .75f;
     private const float rayDistanceVertical = 1f;
-    private const float enemySpeed = 1.3f;
+    private const float speed = 1.3f;
     public bool isFacingRight = false;
     private bool isDead = false;
     private float timeTillHitAgain = 0f;
-    public float enemyHp = 15f;
+    public float hp = 15f;
+    public int money = 5;
     //FIX INVISIBILITY IF YOU DON'T LEAVE ENEMY HIT BOX
     void Start()
     {
@@ -22,11 +23,11 @@ public class CrawlEnemy : BasicEnemy, IDamageable
 
     void Update()
     {
-        if(enemyHp <= 0)
+        if(hp <= 0)
         {
             if (isDead == false)
             {
-                gainMoney(5);
+                gainMoney(money);
                 animation.SetBool("isDead", true);
                 isDead = true;
             }
@@ -35,11 +36,15 @@ public class CrawlEnemy : BasicEnemy, IDamageable
                 Destroy(gameObject);
             }
         }
-        else
+    }
+
+    void FixedUpdate()
+    {
+        if (isDead == false)
         {
             float direction = isFacingRight ? 1f:-1f;
             float distanceHead = direction*0.75f;
-            gameObject.transform.position += new Vector3(direction * enemySpeed * Time.deltaTime,0,0);        
+            gameObject.transform.position += new Vector3(direction * speed * Time.deltaTime,0,0);        
             
             Vector3 enemyHead = gameObject.transform.position + new Vector3(distanceHead,0,0);
             
@@ -54,11 +59,6 @@ public class CrawlEnemy : BasicEnemy, IDamageable
                 animation.SetBool("isTurn", true);
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-        //Maybe put turning here, when I'm on low fps, the animation can be clunky but maybe not because I'm at less than 10 fps :'(
     }
 
     public void death()
@@ -84,6 +84,6 @@ public class CrawlEnemy : BasicEnemy, IDamageable
 
     public void TakeDamage(int damage)
     {
-        enemyHp -= damage;
+        hp -= damage;
     }
 }
