@@ -142,14 +142,14 @@ MonoBehaviour:
   groundCheck: {fileID: 7569332392688901631}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 520
   platformLayer:
     serializedVersion: 2
     m_Bits: 256
   isClimbing: 0
-  enemyLayer:
+  attackLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   hitBox: {fileID: 6353485592472982443}
   canvas: {fileID: 5799902044936139385, guid: ccc0f14f8dfaa42459023d3aa2da568f, type: 3}
 --- !u!70 &6120493205250152097

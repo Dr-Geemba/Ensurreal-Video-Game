@@ -184,11 +184,13 @@ MonoBehaviour:
   animation: {fileID: 9038434176477586612}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 776
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  enemyHp: 15
+  isFacingRight: 0
+  hp: 15
+  money: 5
 --- !u!95 &9038434176477586612
 Animator:
   serializedVersion: 7
