@@ -8,6 +8,7 @@ TagManager:
   - canvas
   - Enemy
   - ClimbObject
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Player
   - Platform
   - Breakable Wall
-  - 
+  - PlayerAttack
   - 
   - 
   - 

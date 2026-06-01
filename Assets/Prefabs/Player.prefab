@@ -150,7 +150,7 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 576
-  hitBox: {fileID: 6353485592472982443}
+  hitBox: {fileID: 8789051470817442493, guid: b81bfffb1f941604e9b30bf0c14de770, type: 3}
   canvas: {fileID: 5799902044936139385, guid: ccc0f14f8dfaa42459023d3aa2da568f, type: 3}
 --- !u!70 &6120493205250152097
 CapsuleCollider2D:
@@ -333,7 +333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1952647880871025306
 Transform:
   m_ObjectHideFlags: 0

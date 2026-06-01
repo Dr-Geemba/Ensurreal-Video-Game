@@ -201,6 +201,7 @@ public class PlayerController : MonoBehaviour
             if(damageable != null)
             {
                 damageable.TakeDamage(playerDamage);
+                CurrentData.Instance.playerMana += 3;
             }
         }
         StartCoroutine(FlashHitbox());
