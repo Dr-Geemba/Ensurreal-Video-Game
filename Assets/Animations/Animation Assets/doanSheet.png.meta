@@ -1,0 +1,590 @@
+fileFormatVersion: 2
+guid: 9fcd364fd10d34d48a5834802277ff7b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3618159642775300691
+    second: doanSheet_0
+  - first:
+      213: -5417397254637583773
+    second: doanSheet_1
+  - first:
+      213: 5083833580399506933
+    second: doanSheet_2
+  - first:
+      213: -5856709273719837657
+    second: doanSheet_3
+  - first:
+      213: -4091775007342434675
+    second: doanSheet_4
+  - first:
+      213: -1616673600062104730
+    second: doanSheet_5
+  - first:
+      213: 4592192525146614573
+    second: doanSheet_6
+  - first:
+      213: -8350334422111383638
+    second: doanSheet_7
+  - first:
+      213: 2211900881664383215
+    second: doanSheet_8
+  - first:
+      213: -8082581916126478259
+    second: doanSheet_9
+  - first:
+      213: 9062781299731064845
+    second: doanSheet_10
+  - first:
+      213: 5858083731681258602
+    second: doanSheet_11
+  - first:
+      213: -2545187934520764485
+    second: doanSheet_12
+  - first:
+      213: -1552407836338063481
+    second: doanSheet_13
+  - first:
+      213: 5627269477370538531
+    second: doanSheet_14
+  - first:
+      213: -4228158756937287289
+    second: doanSheet_15
+  - first:
+      213: 3828042498736188538
+    second: doanSheet_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: doanSheet_0
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 528
+        width: 365
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 52.5, y: -77.5}
+        - {x: 182.5, y: -77.5}
+        - {x: 182.5, y: 77.5}
+        - {x: -182.5, y: 77.5}
+        - {x: -182.5, y: -77.5}
+        - {x: -99.5, y: -77.5}
+        - {x: -86.5, y: -63.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da559b789f6b9cdc0800000000000000
+      internalID: -3618159642775300691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_1
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 530
+        width: 342
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 362862646e981d4b0800000000000000
+      internalID: -5417397254637583773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 521
+        width: 301
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f53ae0c4b76d8640800000000000000
+      internalID: 5083833580399506933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 525
+        width: 342
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c613b12f9c8bea0800000000000000
+      internalID: -5856709273719837657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 525
+        width: 365
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d86688a5f481737c0800000000000000
+      internalID: -4091775007342434675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 376
+        width: 361
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66bdb8e1deb6099e0800000000000000
+      internalID: -1616673600062104730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_6
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 358
+        width: 360
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -117, y: -77.5}
+        - {x: -103, y: -77.5}
+        - {x: -84, y: -63.5}
+        - {x: 178, y: -74}
+        - {x: 179, y: 84.5}
+        - {x: -180, y: 84.5}
+        - {x: -177, y: -78}
+        - {x: -136, y: -67.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2b619965cebabf30800000000000000
+      internalID: 4592192525146614573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 184
+        width: 167
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaf8556c517ad1c80800000000000000
+      internalID: -8350334422111383638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 324
+        width: 322
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe89af9f12042be10800000000000000
+      internalID: 2211900881664383215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 340
+        width: 369
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4009451296e4df80800000000000000
+      internalID: -8082581916126478259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_10
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 211
+        width: 358
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d08e58f439775cd70800000000000000
+      internalID: 9062781299731064845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_11
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 160
+        width: 317
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -124.5, y: -58.5}
+        - {x: 26.5, y: -79.5}
+        - {x: 63.5, y: -109.5}
+        - {x: 158.5, y: -109.5}
+        - {x: 156.5, y: 68.5}
+        - {x: 3.5078287, y: 101.36807}
+        - {x: -58.5, y: 109.5}
+        - {x: -91.5, y: 92.5}
+        - {x: -117.5, y: 105.5}
+        - {x: -158.5, y: 105.5}
+        - {x: -158.5, y: 10.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6c2b53dd181c4150800000000000000
+      internalID: 5858083731681258602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_12
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 137
+        width: 298
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7974cfe0dadacd0800000000000000
+      internalID: -2545187934520764485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_13
+      rect:
+        serializedVersion: 2
+        x: 1540
+        y: 162
+        width: 343
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78779804c4db47ae0800000000000000
+      internalID: -1552407836338063481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_14
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 41
+        width: 347
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32aa11e66c3181e40800000000000000
+      internalID: 5627269477370538531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_15
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 18
+        width: 279
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 139.5, y: -81.5}
+        - {x: 139.47658, y: 20.345266}
+        - {x: 71.5, y: 81.5}
+        - {x: -139.5, y: 81.5}
+        - {x: -139.5, y: -81.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789bbc623009255c0800000000000000
+      internalID: -4228158756937287289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doanSheet_16
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 10
+        width: 255
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7ce44aee50ff1530800000000000000
+      internalID: 3828042498736188538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d277d2b54b9f0e8479097bac80f27078
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      doanSheet_0: -3618159642775300691
+      doanSheet_1: -5417397254637583773
+      doanSheet_10: 9062781299731064845
+      doanSheet_11: 5858083731681258602
+      doanSheet_12: -2545187934520764485
+      doanSheet_13: -1552407836338063481
+      doanSheet_14: 5627269477370538531
+      doanSheet_15: -4228158756937287289
+      doanSheet_16: 3828042498736188538
+      doanSheet_2: 5083833580399506933
+      doanSheet_3: -5856709273719837657
+      doanSheet_4: -4091775007342434675
+      doanSheet_5: -1616673600062104730
+      doanSheet_6: 4592192525146614573
+      doanSheet_7: -8350334422111383638
+      doanSheet_8: 2211900881664383215
+      doanSheet_9: -8082581916126478259
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
