@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7360626719447105805}
   - component: {fileID: 2540532993894710324}
   - component: {fileID: 7397574908972842590}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Platform
   m_TagString: PhaseObject
   m_Icon: {fileID: 0}

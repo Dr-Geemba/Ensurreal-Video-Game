@@ -14,7 +14,7 @@ public class CrawlEnemy : BasicEnemy, IDamageable
     private float timeTillHitAgain = 0f;
     public int hp = 15;
     public int money = 5;
-    //FIX INVISIBILITY IF YOU DON'T LEAVE ENEMY HIT BOX
+    //NO DAMAGE TAKEN IF RUN INTO ENEMY FROM THE BACK
     void Start()
     {
         spriteDirection = gameObject.GetComponent<SpriteRenderer>();

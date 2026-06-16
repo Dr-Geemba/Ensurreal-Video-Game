@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         canvasOffset = gameObject.transform.position + new Vector3(rayDistanceHorizontal*direction,0,0);
         //We can move this somewhere else, but it's here for testing purposes or smth
+        //Also add tall raycast for tight spaces
         RaycastHit2D hitWall = Physics2D.Raycast(gameObject.transform.position, Vector2.right * direction, rayDistanceHorizontal+0.5f, groundLayer);
         RaycastHit2D hitFloor = Physics2D.Raycast(canvasOffset, Vector2.down, rayDistanceVertical, groundLayer | platformLayer);
         hitsWall = hitWall ? true : false;
