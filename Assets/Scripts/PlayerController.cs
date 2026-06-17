@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     //Starting pos is (-92, 0.7, 0)
     //THERE'S STILL A BUG WHERE WHEN YOU JUMP, YOU SOMETIMES MOVE LEFT OR RIGHT
-    //WE ALSO NEED TO REDO HOW PLAYER TAKES DAMAGE. I-FRAMES DON'T WORK AND SHOULD BE TIED TO THE PLAYER
     private Rigidbody2D playerRigidbody;
     private SpriteRenderer sprite;
     private CapsuleCollider2D collider;
