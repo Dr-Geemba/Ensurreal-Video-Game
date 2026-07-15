@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour, IDamageable
 {
+    //chicken
     private bool isDead = false;
     public float hp = 30f;
     public int money = 15;
