@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class PaintCanvas : MonoBehaviour, IDamageable
 {
+    private SpriteRenderer sprite;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask platformLayer;
     [SerializeField] private LayerMask playerAttackLayer;
@@ -10,6 +12,7 @@ public class PaintCanvas : MonoBehaviour, IDamageable
     private int timesHit = 0;
     void Start()
     {
+        sprite = gameObject.GetComponent<SpriteRenderer>();
         canvasCollider2D = GetComponent<Collider2D>();
         LayerMask collisionLayers = groundLayer | platformLayer | playerAttackLayer;
         if(canvasCollider2D != null)
@@ -23,12 +26,13 @@ public class PaintCanvas : MonoBehaviour, IDamageable
         {
             CurrentData.Instance.playerMana -= 3;
             timesHit += 1;
+            sprite.color = new Color(1f, 1f-(timesHit*0.3f), 1f-(timesHit*0.3f));
         }
         if(timesHit == 3)
         {
             if(CurrentData.Instance.playerHealth < CurrentData.Instance.maxHealth)
             {
-                CurrentData.Instance.playerHealth += 1;
+                CurrentData.Instance.playerHealth = System.Math.Ceiling(CurrentData.Instance.playerHealth)+1m;
                 timesHit += 1;
             }
         }

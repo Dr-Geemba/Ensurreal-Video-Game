@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 629372942}
   - component: {fileID: 629372941}
   m_Layer: 5
-  m_Name: SettingsPanel
+  m_Name: SettingsPanel (Instruos)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -674,26 +674,23 @@ MonoBehaviour:
     Up Arrow - Look
     up
 
-    Z - Jump (Unless holding Down Arrow)
+    Down Arrow - Duck (sprite doesn''t actually change btw)
+
+    Z - Jump
+    (Unless holding Down Arrow)
 
     X - Attack
 
-    R - Mark Mode
+
+    Up Arrow while touching a ladder
+    - Enter climbing state
+
+    While climbing, use Up Arrow and Down Arrow to move
+    up and down and Z to exit the state
 
 
-    Up
-    Arrow while touching a ladder - Enter climbing state
-
-    While climbing, use
-    Up Arrow and Down Arrow to move up and down and Z to exit the state
-
-
-    While
-    climbing, you can''t move sideways unless Mark Mode is on
-
-
-    Down Arrow +
-    Z while on fall-through platform - Fall through the platform'
+    Down Arrow + Z while on fall-through
+    platform - Fall through the platform'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1732,33 +1729,32 @@ MonoBehaviour:
       m_Calls: []
   m_text: '
 
+    New stuff:
+
+    Money chests are now spread across the map and the
+    breakable wall area is now accessable.
+
+    New camera movement has been created
+    for a more smooth gameplay.
+
+
     Already known issues:
 
-    Ladders are a bit wonky, if you jump
-    on a platform and then hold up, you''ll climb off the ladder again. You also
-    can''t go off a ladder if you climb down and hit the ground.
+    Ladders are a bit
+    wonky, if you jump on a platform and then hold up, you''ll climb off the ladder
+    again.
 
-    Fall through
-    platforms are fixed for the most part besides the fact that you can press down
-    and jump before being on a platform to phase through.
+    Sometimes when you jump, you keep your momentum despite trying to
+    move in different directions. IF ANYONE FINDS A PATTERN TO THIS BUG, PLEASE REPORT
+    IT IMMEDIATLY TO EITHER TOMMY OR DEAN.
 
-    Sometimes when you
-    jump, you keep your momentum despite trying to move in different directions.
-    :(
-
-    Enemies need a bit of work in terms of collision and damaging the player.
-
-    There
-    is a breakable wall halfway through but it isn''t scripted yet so you can''t
-    access it yet.
+    Enemies need a bit of work in terms
+    of collision and damaging the player.
 
 
-    Big thanks to Tommy for programming most of the project
-    and making the project. Big thanks to Jacob as well for the lovely Doan enemy
-    animation. Also big thanks to Marissa for the beautiful background scenery.
-
-    Mark
-    mode still exists fyi and old wasd controls also exist.'
+    Thanks to Tommy for programming most
+    of the project and making the project. Thanks to Jacob as well for the lovely
+    Doan enemy animation. Also thanks to Marissa for the beautiful background scenery.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2083,6 +2079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1133be50911d9ff43acdf42a5bb41d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrentData
+  maxHealth: 5
 --- !u!4 &1465865916
 Transform:
   m_ObjectHideFlags: 0

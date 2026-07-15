@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.7, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7569332392688901631}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   swingSFX: {fileID: 8300000, guid: c06e3db181e2cf54ead4c37cfa4cba6b, type: 3}
   hurtSFX: {fileID: 8300000, guid: 49152906fa99a5648be7236aa556f38e, type: 3}
-  markMode: 0
+  direction: 1
   groundCheck: {fileID: 7569332392688901631}
   groundLayer:
     serializedVersion: 2
@@ -146,14 +146,20 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 256
+  damageLayer:
+    serializedVersion: 2
+    m_Bits: 0
   floor: {fileID: 6200000, guid: 63c8a283d74a8534faa1c98828b2108d, type: 2}
   airborne: {fileID: 6200000, guid: 29e044e1a9a771542b61cd9b9452d768, type: 2}
   isGrounded: 0
   isClimbing: 0
+  isDucking: 0
   attackLayer:
     serializedVersion: 2
     m_Bits: 2624
   hitBox: {fileID: 6353485592472982443}
+  iFrames: 1
+  timeTillDamageable: 0
   canvas: {fileID: 5799902044936139385, guid: ccc0f14f8dfaa42459023d3aa2da568f, type: 3}
 --- !u!70 &6120493205250152097
 CapsuleCollider2D:
@@ -347,8 +353,8 @@ Transform:
   m_GameObject: {fileID: 6353485592472982443}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.057671, y: -1.3746709, z: 0}
-  m_LocalScale: {x: 2.5435753, y: 2.2530134, z: 1}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8282152889275561233}

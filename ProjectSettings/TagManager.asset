@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - ClimbObject
   - PlayerAttack
+  - CameraObject
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - PlayerAttack
   - Canvas
   - Damage
-  - 
+  - Chest
   - 
   - 
   - 

@@ -34,7 +34,7 @@ public class PlayerUi : MonoBehaviour
     {
         moneyText.text = "Money: " + newAmount;
     }
-    void UpdateHealthCount(int newAmount)
+    void UpdateHealthCount(decimal newAmount)
     {
         healthText.text = "Health: " + newAmount;
     }

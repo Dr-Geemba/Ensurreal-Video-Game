@@ -13,18 +13,24 @@ public class PhaseObject : MonoBehaviour
         effector = GetComponent<PlatformEffector2D>();
         ogMask = effector.colliderMask;
     }
-    void Update()
+    void OnCollisionStay2D(Collision2D other)
     {
-        if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space)))
+        if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(Drop());
+            PlayerController player = other.gameObject.GetComponent<PlayerController>();
+            Rigidbody2D playerRigid = other.gameObject.GetComponent<Rigidbody2D>();
+            if ((player.isDucking) && (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space)))
+            {
+                StartCoroutine(Drop());
+                playerRigid.AddForce(Vector3.down * 3f, ForceMode2D.Impulse);
+            }
         }
     }
     private IEnumerator Drop()
     {
         int playerLayer = LayerMask.NameToLayer("Player");
         effector.colliderMask &= ~(1 << playerLayer);
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
         effector.colliderMask = ogMask;
     }
 }

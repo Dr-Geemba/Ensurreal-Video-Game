@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Starting pos is (-92, 0.7, 0)
+    //Starting pos is (-92, 0.9, 0)
     //THERE'S STILL A BUG WHERE WHEN YOU JUMP, YOU SOMETIMES MOVE LEFT OR RIGHT
     private Rigidbody2D playerRigidbody;
     private SpriteRenderer sprite;
@@ -12,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip swingSFX;
     public AudioClip hurtSFX;
-    private int direction = 1;
+    public int direction = 1;
     private const float speed = 1f;
     private const float speedClimb = 4f;
     private const float force = 7.5f;
@@ -26,12 +28,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D airborne;
     public bool isGrounded;
     public bool isClimbing;
-    private bool isDucking;
+    public bool isDucking;
     private bool isDeploying;
+    //Change attackRadius to a vector2
     private const float attackRadius = 1.5f;
     [SerializeField] private LayerMask attackLayer;
-    private Vector3 horizontalAttackOffset = new Vector2(1,0);
-    private Vector3 verticalAttackOffset = new Vector2(0, 1.25f);
+    private Vector3 horizontalAttackOffset = new Vector2(0.8f, 0);
+    private Vector3 verticalAttackOffset = new Vector2(0, 1.75f);
     [SerializeField] private GameObject hitBox;
     private const float attackCooldown = 0.4f;
     private float timeTillNextAttack = 0f;
@@ -46,7 +49,7 @@ public class PlayerController : MonoBehaviour
     private bool hitsWall;
     private bool hitsFloor;
     private Vector3 canvasOffset;
-    private const int playerDamage = 8;
+    private int playerDamage = 6;
     private const float maxSpeed = 5f;
     private float moveX;
     void Start()
@@ -208,13 +211,13 @@ public class PlayerController : MonoBehaviour
         Collider2D[] hitTargets;
         if(isFacingUp == true)
         {
-            hitTargets = Physics2D.OverlapBoxAll(gameObject.transform.position + verticalAttackOffset, new Vector2(1, 1) * attackRadius, 0, attackLayer);
+            hitTargets = Physics2D.OverlapBoxAll(gameObject.transform.position + verticalAttackOffset, new Vector2(1, 1.3f) * attackRadius, 0, attackLayer);
             hitBox.transform.position = gameObject.transform.position + verticalAttackOffset;
         }
 
         else
         {
-            hitTargets = Physics2D.OverlapBoxAll(gameObject.transform.position + horizontalAttackOffset*direction, new Vector2(1,1) * attackRadius, 0, attackLayer);
+            hitTargets = Physics2D.OverlapBoxAll(gameObject.transform.position + horizontalAttackOffset*direction, new Vector2(1.3f, 1) * attackRadius, 0, attackLayer);
             hitBox.transform.position = gameObject.transform.position + horizontalAttackOffset*direction;
         }
 
@@ -243,11 +246,33 @@ public class PlayerController : MonoBehaviour
         timeTillFinishDeploy = Time.time;
         sprite.color = new Color(1f, 0f, 0f);
     }
-    public void PlayerDamage(int damage)
+    public void DamagePlayer(int strength)
     {
+        //NEW DAMAGE SYSTEM! Enemies have a strength number instead of a certain damage output
+        //With this, we can give buffs/debuffs to enemies to change how much damage they do and stuff
+        Dictionary<int, decimal> damage = new Dictionary<int, decimal>
+        {
+            [0] = 0.2m,
+            [1] = 1m,
+            [2] = 2m,
+            [3] = 3m,
+            [4] = 5m,
+            [5] = 8m,
+        };
         if (Time.time > timeTillDamageable)
         {
-            CurrentData.Instance.playerHealth -= damage;
+            if (strength > 5)
+            {
+                CurrentData.Instance.playerHealth = 0;
+            }
+            else if (strength >= 0)
+            {
+                if (strength != 0)
+                {
+                    CurrentData.Instance.playerHealth = System.Math.Ceiling(CurrentData.Instance.playerHealth);
+                }
+                CurrentData.Instance.playerHealth -= damage[strength];
+            }
             timeTillDamageable = Time.time + iFrames;
             ExitCanvas();
             isClimbing = false;

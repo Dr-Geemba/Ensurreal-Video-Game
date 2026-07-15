@@ -4,12 +4,12 @@ using UnityEngine;
 public class CurrentData : MonoBehaviour
 {
     public static CurrentData Instance;
-    private int m_playerHealth = 5;
-    public int maxHealth = 5;
-    public static event Action<int> OnPlayerHealthChange;
+    private decimal m_playerHealth = 5m;
+    public decimal maxHealth = 5m;
+    public static event Action<decimal> OnPlayerHealthChange;
     public static event Action<int> OnPlayerMoneyChange;
     public static event Action<int> OnPlayerManaChange;
-    public int playerHealth
+    public decimal playerHealth
     {
         get { return m_playerHealth; }
         set

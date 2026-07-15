@@ -1,12 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BasicEnemy : MonoBehaviour
 {
-    protected const float iFrames = 1f;
-    public virtual void dealDamage(int damageDelt)
-    {
-        CurrentData.Instance.playerHealth -= damageDelt;
-    }
+    [SerializeField] protected int hp;
+    [SerializeField] protected int strength;
+    [SerializeField] protected int money;
 
     public virtual void gainMoney(int moneyGained)
     {
