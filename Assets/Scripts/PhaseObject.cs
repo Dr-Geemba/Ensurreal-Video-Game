@@ -19,7 +19,7 @@ public class PhaseObject : MonoBehaviour
         {
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
             Rigidbody2D playerRigid = other.gameObject.GetComponent<Rigidbody2D>();
-            if ((player.isDucking) && (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space)))
+            if ((player.stateController.currentState == player.duckState) && (Input.GetButton("Jump")))
             {
                 StartCoroutine(Drop());
                 playerRigid.AddForce(Vector3.down * 3f, ForceMode2D.Impulse);

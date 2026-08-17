@@ -16,7 +16,7 @@ public class FollowPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-        int direction = playerCode.direction;
+        float direction = playerCode.direction;
         float xx = player.transform.position.x+direction;
         //if (!lockedY)
         //{

@@ -5,7 +5,7 @@ using UnityEditor;
 #endif
 public class MainMenuUI : MonoBehaviour
 {
-    private const int tutorialLevelScene = 2;
+    [SerializeField] private int tutorialLevelScene = 2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartGame()
     {

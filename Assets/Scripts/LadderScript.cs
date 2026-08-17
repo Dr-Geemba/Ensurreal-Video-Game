@@ -13,26 +13,19 @@ public class LadderScript : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
             Rigidbody2D playerRigid = other.GetComponent<Rigidbody2D>();
             //ADD TIME AFTER W TO NOT SNAP BACK TO LADDER->SMALL COOLDOWN
-            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !player.isClimbing)
+            if (player.movement.y == 1f && player.stateController.currentState != player.climbState)
             {
-                player.isClimbing = true;
-                playerRigid.linearVelocity = Vector3.zero;
-                    Vector3 playerPos = other.transform.position;
-                    other.transform.position = new Vector3(ladderCenter, playerPos.y, playerPos.z);
+                player.stateController.ChangeState(player.climbState);
+                other.transform.position = StartClimb(other.transform.position, ladderCenter);
             }
             //space gets off the ladder and ends climbing state
             //You can do or I can: ADD STOPCLIMB IF HIT BY ENEMY
-            if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space) || (player.isGrounded == true && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))))
-            {
-                stopClimb(playerRigid, player);
-            }
         }
     }
 
-    void stopClimb(Rigidbody2D playerRigid, PlayerController player)
+    Vector3 StartClimb(Vector3 playerPos, float ladderCenter)
     {
-        player.isClimbing = false;
-        playerRigid.gravityScale = 1f;
+        return new Vector3(ladderCenter, playerPos.y, playerPos.z);
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -42,7 +35,7 @@ public class LadderScript : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
             Rigidbody2D playerRigid = other.GetComponent<Rigidbody2D>();
-            stopClimb(playerRigid, player);
+            player.stateController.ChangeState(player.fallState);
         }
     }
 }

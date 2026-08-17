@@ -802,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509f3eb1f0a849d489910fcc777b5d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
+  tutorialLevelScene: 2
 --- !u!114 &1068659120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2079,7 +2080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1133be50911d9ff43acdf42a5bb41d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrentData
-  maxHealth: 5
 --- !u!4 &1465865916
 Transform:
   m_ObjectHideFlags: 0
